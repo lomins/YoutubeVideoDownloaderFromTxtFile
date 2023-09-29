@@ -50,8 +50,7 @@ func main() {
 		}
 
 		videoTitle := video.Title
-		videoTitle = strings.Replace(videoTitle, "?", "", -1)
-		videoTitle = strings.Replace(videoTitle, "!", "", -1)
+		videoTitle = symbolsReplacer(videoTitle)
 
 		file, err = os.Create(videoTitle + ".mp4")
 		if err != nil {
@@ -67,4 +66,19 @@ func main() {
 		fmt.Println("Succefull download: " + videoTitle)
 	}
 	fmt.Println("Нажмите Enter для выхода...")
+}
+
+func symbolsReplacer(videoTitle string) string {
+	videoTitle = strings.Replace(videoTitle, "?", "", -1)
+	videoTitle = strings.Replace(videoTitle, "!", "", -1)
+	videoTitle = strings.Replace(videoTitle, "\\", "", -1)
+	videoTitle = strings.Replace(videoTitle, "/", "", -1)
+	videoTitle = strings.Replace(videoTitle, ":", "", -1)
+	videoTitle = strings.Replace(videoTitle, "*", "", -1)
+	videoTitle = strings.Replace(videoTitle, "\"", "", -1)
+	videoTitle = strings.Replace(videoTitle, "<", "", -1)
+	videoTitle = strings.Replace(videoTitle, ">", "", -1)
+	videoTitle = strings.Replace(videoTitle, "|", "", -1)
+
+	return videoTitle
 }
